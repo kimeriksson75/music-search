@@ -18,10 +18,12 @@ function App() {
         <Layout className='layout'>
           <Header />
           <Content style={{ padding: '12px' }}>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/artist/:id' component={Artist} />
-            <Route exact path='/album/:id' component={Album} />
-            <Route exact path='/about' component={About} />
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/artist/:id' component={Artist} />
+              <Route exact path='/album/:id' component={Album} />
+              <Route exact path='/about' component={About} />
+            </Switch>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
             <p>All rights reserved</p>
