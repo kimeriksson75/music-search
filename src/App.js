@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Layout } from 'antd';
+import Header from './components/layout/Header';
+import Home from './components/pages/Home';
+import About from './components/pages/About';
+import Artist from './components/pages/Artist';
+import Album from './components/pages/Album';
+import MusicmatchState from './context/musicmatch/musicmatchState';
+
+import 'antd/dist/antd.css';
+const { Footer, Content } = Layout;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MusicmatchState>
+      <Router>
+        <Layout className='layout'>
+          <Header />
+          <Content style={{ padding: '12px' }}>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/artist/:id' component={Artist} />
+            <Route exact path='/album/:id' component={Album} />
+            <Route exact path='/about' component={About} />
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            <p>All rights reserved</p>
+          </Footer>
+        </Layout>
+      </Router>
+    </MusicmatchState>
   );
 }
 
